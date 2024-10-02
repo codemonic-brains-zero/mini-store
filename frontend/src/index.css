@@ -62,7 +62,7 @@
     align-items: center;
     margin-left: 1rem;
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 1.2rem;  
   }
   
   /* Main Content Section */
@@ -75,7 +75,7 @@
   }
   
   .dashboard-image img {
-    max-width: 300px;
+    max-width: 100%;
   }
   
   .dashboard-buttons {
@@ -87,9 +87,9 @@
   .dashboard-buttons button {
     background-color: #5e3182;
     color: white;
-    padding: 1rem 2rem;
+    padding: 2rem 3rem;
     border: none;
-    font-size: 1.2rem;
+    font-size: 2rem;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;

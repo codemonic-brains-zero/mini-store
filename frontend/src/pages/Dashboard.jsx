@@ -1,3 +1,5 @@
+import calLottieImg from "../assets/images/62051510.png"
+;
 export default function Dashboard() {
   return (
     <>
@@ -22,16 +24,16 @@ export default function Dashboard() {
         <div className="dashboard-content">
           <div className="dashboard-image">
             <img
-              src="https://static.vecteezy.com/system/resources/previews/023/402/465/non_2x/man-avatar-free-vector.jpg"
+              src={calLottieImg}
               alt="Dashboard Illustration"
             />
           </div>
 
           <div className="dashboard-buttons">
-            <button>Saved Bills</button>
-            <button>Revenue</button>
             <button>Add Items</button>
             <button>Edit Items</button>
+            <button>Saved Bills</button>
+            <button>Revenue</button>
             <button>Edit Shop Info</button>
             <button>Manage A/C</button>
           </div>
