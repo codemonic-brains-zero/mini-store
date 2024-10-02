@@ -1,5 +1,5 @@
-export const sendToken = (user,statusCode,res,message)=>{
-    const token = user.getJWTToken();
+export const sendToken = (item,statusCode,res,message)=>{
+    const token = item.getJWTToken();
     const options={
     expires: new Date(
         Date.now() + process.env.COOKIE_EXPIRE*24*60*60*1000
@@ -8,7 +8,7 @@ export const sendToken = (user,statusCode,res,message)=>{
 }
 res.status(statusCode).cookie("token",token,options).json({
     success : true,
-    user,
+    item,
     message,
     token,
 })
