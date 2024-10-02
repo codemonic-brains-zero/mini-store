@@ -37,8 +37,8 @@ export default function Dashboard() {
             <Link to="/add_items">
               <button>Saved Bills</button>
             </Link>
-            <Link to="/add_items">
-              <button>Revenue</button>
+            <Link to="/database">
+              <button>Database</button>
             </Link>
             <Link to="/add_items">
               <button>Edit Shop Info</button>
