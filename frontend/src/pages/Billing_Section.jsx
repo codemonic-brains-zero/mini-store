@@ -27,10 +27,12 @@ export default function Billing_Section() {
       <div className="billing-info">
         <div className="customer-details">
           <p>
-            <strong>Name:</strong> $$$$$$$$$$$$$$
+            <strong>Name:</strong> 
+            <input type="text" placeholder="Enter Name"/>
           </p>
           <p>
-            <strong>Mobile:</strong> $$$$$$$$$$$$$$
+            <strong>Mobile:</strong>
+            <input type="number" placeholder="Enter Mobile Number" />
           </p>
         </div>
       </div>
@@ -44,7 +46,7 @@ export default function Billing_Section() {
         </div> */}
       <div className="billing-content h-96 overflow-auto"> 
         <table className="billing-table">
-          <thead className="sticky top-0">
+          <thead  >
             <tr>
               <th>Sr.no</th>
               <th>Item Name</th>
