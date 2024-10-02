@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import jwt from 'jsonwebtoken'; // Importing jwt to use for token generation
 
 const Item = new mongoose.Schema({
   Item_Number: {
@@ -37,5 +38,10 @@ const Item = new mongoose.Schema({
     max: [100, 'GST must be less than or equal to 100'],  // GST cannot exceed 100%
   }
 });
+
+// Adding a method to generate a JWT token
+Item.methods.getJWTToken = function() {
+  return jwt.sign({ id: this._id }, process.env.JWT_SECRET_KEY, { expiresIn: '1h' });
+};
 
 export default mongoose.model('Item', Item);
