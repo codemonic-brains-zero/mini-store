@@ -1,4 +1,5 @@
 import calLottieImg from "../assets/images/20943780.jpg";
+import data from "../../../raw.json";
 export default function Billing_Section() {
   return (
     <div className="billing-page">
@@ -26,24 +27,26 @@ export default function Billing_Section() {
       <div className="billing-info">
         <div className="customer-details">
           <p>
-            <strong>Name:</strong> $$$$$$$$$$$$$$
+            <strong>Name:</strong> 
+            <input type="text" placeholder="Enter Name"/>
           </p>
           <p>
-            <strong>Mobile:</strong> $$$$$$$$$$$$$$
+            <strong>Mobile:</strong>
+            <input type="number" placeholder="Enter Mobile Number" />
           </p>
         </div>
       </div>
 
       {/* Billing Table Section */}
-      <div className="billing-content">
-        <div className="billing-image">
+        {/* <div className="billing-image">
           <img
             src={calLottieImg}
             alt="Billing Illustration"
           />
-        </div>
+        </div> */}
+      <div className="billing-content h-96 overflow-auto"> 
         <table className="billing-table">
-          <thead>
+          <thead  >
             <tr>
               <th>Sr.no</th>
               <th>Item Name</th>
@@ -55,30 +58,44 @@ export default function Billing_Section() {
             </tr>
           </thead>
           <tbody>
-            {Array.from({ length: 7 }).map((_, index) => (
-              <tr key={index}>
-                <td>{index + 1}</td>
-                <td>Cookies</td>
-                <td>4325</td>
-                <td>2</td>
-                <td>17</td>
-                <td>3.23</td>
-                <td>40.46</td>
-              </tr>
-            ))}
+          {data?.map(
+                ({ Item_Number, Item_Name, HSN_SAC, Price, GST }, index) => (
+                  <tr key={index}>
+                    <td className="text-center h-10 w-32 text-xl rounded-xl bg-inherit p-2">
+                      {Item_Number}
+                    </td>
+                    <td className="text-center h-10 text-xl rounded-xl bg-inherit p-2">
+                      {Item_Name}
+                    </td>
+                    <td className="text-center h-10 text-xl rounded-xl bg-inherit p-2">
+                      {HSN_SAC}
+                    </td>
+                    <td className="text-center h-10 text-xl rounded-xl bg-inherit p-2">
+                      1
+                    </td>
+                    <td className="text-center h-10 text-xl rounded-xl bg-inherit p-2">
+                      {Price}
+                    </td>
+                    <td>{GST}</td>
+                    <td>{Price + GST}</td>
+                  </tr>
+                )
+              )}
           </tbody>
         </table>
       </div>
 
       {/* Footer Section */}
       <div className="billing-footer">
-        <button className="print-button">Print</button>
-        <div className="total-info">
+        <button className="print-button border-2 rounded-lg font-bold">Generate Bill</button>
+        <div className="flex flex-row gap-10">
           <p>
-            <strong>Total Items:</strong> $$$
+            <span className="text-4xl font-bold">Total Items:</span> 
+            <span className="text-4xl font-bold text-yellow-400">$$$</span> 
           </p>
           <p>
-            <strong>Total:</strong> 0000.00 ₹
+            <span className="text-4xl font-bold">Total:</span> 
+            <span className="text-4xl font-bold text-yellow-400">0000.00 ₹</span>
           </p>
         </div>
       </div>

@@ -1,5 +1,6 @@
-import calLottieImg from "../assets/images/62051510.png"
-;
+import { Link } from "react-router-dom";
+import calLottieImg from "../assets/images/62051510.png";
+
 export default function Dashboard() {
   return (
     <>
@@ -23,26 +24,34 @@ export default function Dashboard() {
         {/* Main Content Section */}
         <div className="dashboard-content">
           <div className="dashboard-image">
-            <img
-              src={calLottieImg}
-              alt="Dashboard Illustration"
-            />
+            <img src={calLottieImg} alt="Dashboard Illustration" />
           </div>
 
           <div className="dashboard-buttons">
-            <button>Add Items</button>
-            <button>Edit Items</button>
-            <button>Saved Bills</button>
-            <button>Revenue</button>
-            <button>Edit Shop Info</button>
-            <button>Manage A/C</button>
+            <Link to="/add_items">
+              <button> Add Items</button>
+            </Link>
+            <Link to="/add_items">
+              <button> Edit Items</button>
+            </Link>
+            <Link to="/add_items">
+              <button>Saved Bills</button>
+            </Link>
+            <Link to="/database">
+              <button>Database</button>
+            </Link>
+            <Link to="/add_items">
+              <button>Edit Shop Info</button>
+            </Link>
+            <Link to="/add_items">
+              <button>Manage A/C</button>
+            </Link>
           </div>
         </div>
-
         {/* Footer Section */}
         <footer className="dashboard-footer">
-          <p>Date: 01/10/2024</p>
           <p>Time: 01:00 PM</p>
+          <p>Date: 01/10/2024</p>
         </footer>
       </div>
     </>
