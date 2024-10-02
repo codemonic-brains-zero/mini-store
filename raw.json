@@ -1,0 +1,142 @@
+[
+    {
+      "Item_Number": 1,
+      "Item_Name": "Cookies",
+      "HSN_SAC": "1905",
+      "Price": 100,
+      "GST": 5
+    },
+    {
+      "Item_Number": 2,
+      "Item_Name": "Chips",
+      "HSN_SAC": "2005",
+      "Price": 50,
+      "GST": 18
+    },
+    {
+      "Item_Number": 3,
+      "Item_Name": "Chocolate Bar",
+      "HSN_SAC": "1806",
+      "Price": 75,
+      "GST": 18
+    },
+    {
+      "Item_Number": 4,
+      "Item_Name": "Soda",
+      "HSN_SAC": "2202",
+      "Price": 40,
+      "GST": 18
+    },
+    {
+      "Item_Number": 5,
+      "Item_Name": "Ice Cream",
+      "HSN_SAC": "2105",
+      "Price": 120,
+      "GST": 18
+    },
+    {
+      "Item_Number": 6,
+      "Item_Name": "Biscuits",
+      "HSN_SAC": "1905",
+      "Price": 60,
+      "GST": 5
+    },
+    {
+      "Item_Number": 7,
+      "Item_Name": "Bread",
+      "HSN_SAC": "1905",
+      "Price": 40,
+      "GST": 5
+    },
+    {
+      "Item_Number": 8,
+      "Item_Name": "Pasta",
+      "HSN_SAC": "1902",
+      "Price": 80,
+      "GST": 18
+    },
+    {
+      "Item_Number": 9,
+      "Item_Name": "Cereal",
+      "HSN_SAC": "1904",
+      "Price": 90,
+      "GST": 5
+    },
+    {
+      "Item_Number": 10,
+      "Item_Name": "Olive Oil",
+      "HSN_SAC": "1515",
+      "Price": 500,
+      "GST": 12
+    },
+    {
+      "Item_Number": 11,
+      "Item_Name": "Vegetable Oil",
+      "HSN_SAC": "1515",
+      "Price": 300,
+      "GST": 12
+    },
+    {
+      "Item_Number": 12,
+      "Item_Name": "Frozen Peas",
+      "HSN_SAC": "0710",
+      "Price": 150,
+      "GST": 5
+    },
+    {
+      "Item_Number": 13,
+      "Item_Name": "Rice",
+      "HSN_SAC": "1006",
+      "Price": 200,
+      "GST": 5
+    },
+    {
+      "Item_Number": 14,
+      "Item_Name": "Chicken",
+      "HSN_SAC": "0207",
+      "Price": 600,
+      "GST": 12
+    },
+    {
+      "Item_Number": 15,
+      "Item_Name": "Beef",
+      "HSN_SAC": "0202",
+      "Price": 700,
+      "GST": 12
+    },
+    {
+      "Item_Number": 16,
+      "Item_Name": "Milk",
+      "HSN_SAC": "0401",
+      "Price": 50,
+      "GST": 5
+    },
+    {
+      "Item_Number": 17,
+      "Item_Name": "Yogurt",
+      "HSN_SAC": "0403",
+      "Price": 80,
+      "GST": 5
+    },
+    {
+      "Item_Number": 18,
+      "Item_Name": "Cheese",
+      "HSN_SAC": "0406",
+      "Price": 300,
+      "GST": 12
+    },
+    {
+      "Item_Number": 19,
+      "Item_Name": "Fish",
+      "HSN_SAC": "0302",
+      "Price": 500,
+      "GST": 12
+    },
+    {
+      "Item_Number": 20,
+      "Item_Name": "Eggs",
+      "HSN_SAC": "0407",
+      "Price": 90,
+      "GST": 5
+    }
+  ]
