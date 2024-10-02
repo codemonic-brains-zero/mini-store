@@ -24,3 +24,12 @@ export const addItem = catchAsyncError(async (req, res, next) => {
     });
     sendToken(item,200,res,"New Item Added Successfully...")
 })
+
+export const getItems = catchAsyncError(async(req,res,next)=>{
+    const items = await Item.find();
+    
+    res.status(200).json({
+        success: true,
+        items
+    })
+}) 
