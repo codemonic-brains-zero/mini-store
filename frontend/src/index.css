@@ -8,6 +8,21 @@
   padding: 0;
   box-sizing: border-box;
 }
+html::-webkit-scrollbar {
+  width: 5px;               /* width of the entire scrollbar */
+}
+
+html::-webkit-scrollbar-track {
+  background: rgb(235, 235, 235);     
+  /* margin-top: 45px; */
+}
+
+html::-webkit-scrollbar-thumb {
+  background-color: #5e3182;    /* color of the scroll thumb */
+  border-radius: 10px;       /* roundness of the scroll thumb */
+  /* border: 3px solid orange; */
+}
+
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -198,7 +213,24 @@ body {
 /* Billing Content */
 .billing-content {
   display: flex;
-  padding: 2rem;
+  /* padding: 2rem; */
+  width: 90%;
+  margin: auto;
+}
+
+.billing-content::-webkit-scrollbar {
+  width: 8px;               /* width of the entire scrollbar */
+}
+
+.billing-content::-webkit-scrollbar-track {
+  background: rgb(235, 235, 235);     
+  /* margin-top: 45px; */
+}
+
+.billing-content::-webkit-scrollbar-thumb {
+  background-color: #5e3182;    /* color of the scroll thumb */
+  border-radius: 10px;       /* roundness of the scroll thumb */
+  /* border: 3px solid orange; */
 }
 
 .billing-image img {
@@ -207,14 +239,13 @@ body {
 
 .billing-table {
   width: 100%;
-  margin-left: 2rem;
   border-collapse: collapse;
 }
 
 .billing-table th,
 .billing-table td {
   border: 1px solid #ddd;
-  padding: 8px;
+  padding: 10px;
   text-align: center;
 }
 
