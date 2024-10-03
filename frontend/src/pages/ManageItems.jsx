@@ -2,11 +2,13 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 export default function ManageItems() {
+  const [database, setDatabase] = useState([]);
   const [item_Number, setitem_Number] = useState([]);
   const [item_Name, setItem_Name] = useState([]);
   const [hSN_SAC, setHSN_SAC] = useState([]);
   const [price, setPrice] = useState([]);
   const [gST, setGST] = useState([]);
+  const [searching, setSearching] = useState([]);
 
   console.log(item_Number);
   const getItemNumber = async () => {
@@ -15,6 +17,7 @@ export default function ManageItems() {
       .then((response) => {
         console.log(response.data.items);
         setitem_Number(response.data.items.length + 1);
+        setDatabase(response.data.items.reverse());
       })
       .catch((err) => {
         console.log(err);
@@ -37,9 +40,15 @@ export default function ManageItems() {
         console.log(error);
       });
   };
+  
+
+  // const found = Object.values(database).includes(searching);
+  // console.log(found)
+  // console.log(searching)
+  
   useEffect(() => {
     getItemNumber();
-  }, []);
+  }, [item_Number]);
 
   return (
     <>
@@ -81,7 +90,7 @@ export default function ManageItems() {
                 <input
                   className="text-center h-10 text-xl rounded-xl bg-inherit p-2"
                   type="text"
-                  onChange={(e) => setItem_Name(e.target.value)}
+                  onChange={(e) => {setItem_Name(e.target.value),setSearching(e.target.value)}}
                   placeholder="Enter Item Name"
                 />
               </td>
@@ -122,6 +131,26 @@ export default function ManageItems() {
                 </button>
               </td>
             </tr>
+            {database?.map(
+                ({ Item_Number, Item_Name, HSN_SAC, Price, GST }, index) => (
+                  <tr key={index}>
+                    <td className="text-center h-10 w-32 text-xl rounded-xl bg-inherit p-2">
+                      {Item_Number}
+                    </td>
+                    <td className="text-center h-10 text-xl rounded-xl bg-inherit p-2">
+                      {Item_Name}
+                    </td>
+                    <td className="text-center h-10 text-xl rounded-xl bg-inherit p-2">
+                      {HSN_SAC}
+                    </td>
+                    <td className="text-center h-10 text-xl rounded-xl bg-inherit p-2">
+                      {Price}
+                    </td>
+                    <td>{GST}</td>
+                    <td>{Number(Price) + Number(GST)}</td>
+                  </tr>
+                )
+              )}
           </tbody>
         </table>
       </div>   
