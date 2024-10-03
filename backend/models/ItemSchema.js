@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken'; // Importing jwt to use for token generation
 
 const Item = new mongoose.Schema({
   Item_Number: {
-    type: Number,
+    type: String,
     required: true,   // Item number is required
     unique: true,     // Ensures the item number is unique
   },
@@ -27,12 +27,12 @@ const Item = new mongoose.Schema({
     }
   },
   Price: {
-    type: Number,
+    type: String,
     required: [true, 'Price is required'],  // Price is required
     min: [0, 'Price must be greater than or equal to 0'],  // Price must be a positive number
   },
   GST: {
-    type: Number,
+    type: String,
     required: [true, 'GST is required'],  // GST is required
     min: [0, 'GST must be greater than or equal to 0'],  // GST should be at least 0
     max: [100, 'GST must be less than or equal to 100'],  // GST cannot exceed 100%
