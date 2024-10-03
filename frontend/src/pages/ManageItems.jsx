@@ -78,9 +78,7 @@ export default function ManageItems() {
             </tr>
           </tbody>
         </table>
-      </div>
-
-   
+      </div>   
     </>
   );
 }

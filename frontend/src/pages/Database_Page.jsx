@@ -1,5 +1,7 @@
 import data from "../../../raw.json";
 export default function Database_Page() {
+
+  
   return (
     <>
           <header className="billing-header">

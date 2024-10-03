@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken'; // Importing jwt to use for token generation
 
 const Item = new mongoose.Schema({
   Item_Number: {
-    type: Number,
+    type: String,
     required: true,   // Item number is required
     unique: true,     // Ensures the item number is unique
   },
