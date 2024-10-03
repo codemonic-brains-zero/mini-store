@@ -46,7 +46,7 @@ export default function Billing_Section() {
         </div> */}
       <div className="billing-content h-96 overflow-auto"> 
         <table className="billing-table">
-          <thead  >
+          <thead className="top-0 sticky">
             <tr>
               <th>Sr.no</th>
               <th>Item Name</th>
