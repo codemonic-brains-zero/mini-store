@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 export default function Database_Page() {
+
   const [database, setDatabase] = useState([]);
 
   const getDatabase = async () => {
