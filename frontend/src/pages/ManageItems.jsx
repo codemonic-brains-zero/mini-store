@@ -8,6 +8,7 @@ export default function ManageItems() {
   const [hSN_SAC, setHSN_SAC] = useState([]);
   const [price, setPrice] = useState([]);
   const [gST, setGST] = useState([]);
+  const [searching, setSearching] = useState([]);
 
   console.log(item_Number);
   const getItemNumber = async () => {
@@ -39,9 +40,15 @@ export default function ManageItems() {
         console.log(error);
       });
   };
+  
+
+  // const found = Object.values(database).includes(searching);
+  // console.log(found)
+  // console.log(searching)
+  
   useEffect(() => {
     getItemNumber();
-  }, [database]);
+  }, [item_Number]);
 
   return (
     <>
@@ -83,7 +90,7 @@ export default function ManageItems() {
                 <input
                   className="text-center h-10 text-xl rounded-xl bg-inherit p-2"
                   type="text"
-                  onChange={(e) => setItem_Name(e.target.value)}
+                  onChange={(e) => {setItem_Name(e.target.value),setSearching(e.target.value)}}
                   placeholder="Enter Item Name"
                 />
               </td>
