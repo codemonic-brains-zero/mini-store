@@ -1,7 +1,49 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+
 export default function ManageItems() {
+  const [item_Number, setitem_Number] = useState([]);
+  const [item_Name, setItem_Name] = useState([]);
+  const [hSN_SAC, setHSN_SAC] = useState([]);
+  const [price, setPrice] = useState([]);
+  const [gST, setGST] = useState([]);
+
+  console.log(item_Number);
+  const getItemNumber = async () => {
+    axios
+      .get(`${import.meta.env.VITE_REACT_SERVER_URL}/api/v1/item/get-items`)
+      .then((response) => {
+        console.log(response.data.items);
+        setitem_Number(response.data.items.length + 1);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  const addItems = async () => {
+    axios
+      .post(`${import.meta.env.VITE_REACT_SERVER_URL}/api/v1/item/add-item`, {
+        Item_Number: item_Number,
+        Item_Name: item_Name,
+        HSN_SAC: hSN_SAC,
+        Price: price,
+        GST: gST,
+      })
+      .then(function (response) {
+        console.log(response);
+        setitem_Number(item_Number + 1);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+  useEffect(() => {
+    getItemNumber();
+  }, []);
+
   return (
     <>
-          <header className="billing-header">
+      <header className="billing-header">
         <div className="header-left">
           <h1>Add Items</h1>
           <p>
@@ -34,11 +76,12 @@ export default function ManageItems() {
           </thead>
           <tbody>
             <tr>
-              <td>$ array length </td>
+              <td>{item_Number}</td>
               <td className="h-20">
                 <input
                   className="text-center h-10 text-xl rounded-xl bg-inherit p-2"
                   type="text"
+                  onChange={(e) => setItem_Name(e.target.value)}
                   placeholder="Enter Item Name"
                 />
               </td>
@@ -46,6 +89,7 @@ export default function ManageItems() {
                 <input
                   className="text-center h-10 text-xl rounded-xl bg-inherit p-2"
                   type="number"
+                  onChange={(e) => setHSN_SAC(e.target.value)}
                   placeholder="Enter HSN / SAC"
                 />
               </td>
@@ -53,6 +97,7 @@ export default function ManageItems() {
                 <input
                   className="text-center h-10 text-xl rounded-xl bg-inherit p-2"
                   type="number"
+                  onChange={(e) => setPrice(e.target.value)}
                   placeholder="Enter Price"
                 />
               </td>
@@ -60,18 +105,19 @@ export default function ManageItems() {
                 <input
                   className="text-center h-10 text-xl rounded-xl bg-inherit p-2"
                   type="number"
+                  onChange={(e) => setGST(e.target.value)}
                   placeholder="Enter GST Number"
                 />
               </td>
               <td className="h-20">
-                <input
-                  className="text-center h-10 text-xl rounded-xl bg-inherit p-2 w-40"
-                  type="number"
-                  placeholder="Enter AMOUNT"
-                />
+                <span     className="text-center h-10 text-xl rounded-xl bg-inherit p-2 w-40">{Number(price) + Number(gST) || 0}</span>
+                
               </td>
               <td className="h-20">
-                <button className="rounded-xl p-2 border-2 hover:bg-zinc-300 w-40 transition-all">
+                <button
+                  className="rounded-xl p-2 border-2 hover:bg-zinc-300 w-40 transition-all"
+                  onClick={addItems}
+                >
                   Submit
                 </button>
               </td>
@@ -79,6 +125,7 @@ export default function ManageItems() {
           </tbody>
         </table>
       </div>   
+      </div>
     </>
   );
 }

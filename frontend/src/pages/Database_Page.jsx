@@ -1,10 +1,29 @@
-import data from "../../../raw.json";
+import { useState, useEffect } from "react";
+import axios from "axios";
+
 export default function Database_Page() {
 
-  
+  const [database, setDatabase] = useState([]);
+
+  const getDatabase = async () => {
+    axios
+      .get(`${import.meta.env.VITE_REACT_SERVER_URL}/api/v1/item/get-items`)
+      .then((response) => {
+        console.log(response.data.items);
+        setDatabase(response.data.items);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    getDatabase();
+  }, []);
+
   return (
     <>
-          <header className="billing-header">
+      <header className="billing-header">
         <div className="header-left">
           <h1>Database</h1>
           <p>
@@ -22,6 +41,7 @@ export default function Database_Page() {
           </div>
         </div>
       </header>
+
       <div className="billingBox">
         <div className="billing-content">
           <table className="billing-table">
@@ -36,7 +56,7 @@ export default function Database_Page() {
               </tr>
             </thead>
             <tbody>
-              {data?.map(
+              {database?.map(
                 ({ Item_Number, Item_Name, HSN_SAC, Price, GST }, index) => (
                   <tr key={index}>
                     <td className="text-center h-10 w-32 text-xl rounded-xl bg-inherit p-2">
@@ -52,7 +72,7 @@ export default function Database_Page() {
                       {Price}
                     </td>
                     <td>{GST}</td>
-                    <td>{Price + GST}</td>
+                    <td>{Number(Price) + Number(GST)}</td>
                   </tr>
                 )
               )}
@@ -61,5 +81,5 @@ export default function Database_Page() {
         </div>
       </div>
     </>
-  )
+  );
 }
