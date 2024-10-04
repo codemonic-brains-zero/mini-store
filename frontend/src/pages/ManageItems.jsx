@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import editLogo from '../assets/images/edit.png'
+import editIcon from '../assets/images/edit.png'
+import deleteIcon from '../assets/images/trash.png'
+import addIcon from '../assets/images/check.png'
 
 export default function ManageItems() {
   const [database, setDatabase] = useState([]);
@@ -74,7 +76,7 @@ export default function ManageItems() {
           </thead>
           <tbody>
             <tr>
-              <td></td>
+              <td> <img className="w-6 m-auto" src={addIcon} alt="" /></td>
               <td className="text-center text-xl">{item_Number}</td>
               <td className="h-20">
                 <input
@@ -107,17 +109,17 @@ export default function ManageItems() {
                   className="input w-full max-w-xs text-center text-xl"
                   type="number"
                   onChange={(e) => setGST(e.target.value)}
-                  placeholder="Enter GST Number"
+                  placeholder="Enter GST"
                 />
               </td>
               <td   className="text-center text-xl">
                 <span>
-                  {Number(price) + Number(gST) || 0}
+                ₹ {Number(price) + Number(gST) || 0}
                 </span>
               </td>
               <td className="h-20 text-center">
                 <button
-                  className="btn"
+                  className="btn text-lg"
                   onClick={addItems}
                 >
                   Submit
@@ -137,8 +139,10 @@ export default function ManageItems() {
                   <td className="text-center">{HSN_SAC}</td>
                   <td className="text-center">{Price}</td>
                   <td className="text-center">{GST}</td>
-                  <td className="text-center">{Number(Price) + Number(GST)}</td>
-                  <td><button className="btn"><img className="w-6 text-center m-auto" src={editLogo} alt="" /></button></td>
+                  <td className="text-center">₹ {Number(Price) + Number(GST)}</td>
+                  <td className="flex flex-row"><button className="btn"><img className="w-6 text-center m-auto" src={editIcon} alt="" /></button>
+                  <button className="btn ml-2"><img className="w-6 text-center m-auto" src={deleteIcon} alt="" /></button></td>
+             
                 </tr>
               )
             )}
