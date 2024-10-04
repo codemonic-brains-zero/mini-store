@@ -3,17 +3,20 @@ import axios from "axios";
 
 export default function Database_Page() {
   const [database, setDatabase] = useState([]);
+  
+  // Fetch the environment variables
+  const FRONT_SERVER = import.meta.env.VITE_REACT_SERVER_URL || 'http://localhost:5000';
+  const GET_ITEMS = import.meta.env.VITE_GET_ITEMS || '/api/v1/item/get-items';
 
+  // Fetch items from API
   const getDatabase = async () => {
-    axios
-      .get(`${import.meta.env.VITE_REACT_SERVER_URL}/api/v1/item/get-items`)
-      .then((response) => {
-        console.log(response.data.items);
-        setDatabase(response.data.items);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    try {
+      const response = await axios.get(`${FRONT_SERVER}${GET_ITEMS}`);
+      console.log(response.data.items);
+      setDatabase(response.data.items);
+    } catch (err) {
+      console.log("Error fetching data: ", err);
+    }
   };
 
   useEffect(() => {
@@ -37,26 +40,24 @@ export default function Database_Page() {
               </tr>
             </thead>
             <tbody>
-              {database?.map(
-                ({ Item_Number, Item_Name, HSN_SAC, Price, GST }, index) => (
-                  <tr key={index}>
-                    <td className="text-center h-10 w-32 text-xl rounded-xl bg-inherit p-2">
-                      {Item_Number}
-                    </td>
-                    <td className="text-center h-10 text-xl rounded-xl bg-inherit p-2">
-                      {Item_Name}
-                    </td>
-                    <td className="text-center h-10 text-xl rounded-xl bg-inherit p-2">
-                      {HSN_SAC}
-                    </td>
-                    <td className="text-center h-10 text-xl rounded-xl bg-inherit p-2">
-                      {Price}
-                    </td>
-                    <td>{GST}</td>
-                    <td>{Number(Price) + Number(GST)}</td>
-                  </tr>
-                )
-              )}
+              {database?.map(({ Item_Number, Item_Name, HSN_SAC, Price, GST }, index) => (
+                <tr key={index}>
+                  <td className="text-center h-10 w-32 text-xl rounded-xl bg-inherit p-2">
+                    {Item_Number}
+                  </td>
+                  <td className="text-center h-10 text-xl rounded-xl bg-inherit p-2">
+                    {Item_Name}
+                  </td>
+                  <td className="text-center h-10 text-xl rounded-xl bg-inherit p-2">
+                    {HSN_SAC}
+                  </td>
+                  <td className="text-center h-10 text-xl rounded-xl bg-inherit p-2">
+                    {Price}
+                  </td>
+                  <td>{GST}</td>
+                  <td>{Number(Price) + Number(GST)}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
