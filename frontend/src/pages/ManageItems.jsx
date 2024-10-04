@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import editLogo from '../assets/images/edit.png'
 
 export default function ManageItems() {
   const [database, setDatabase] = useState([]);
@@ -40,63 +41,54 @@ export default function ManageItems() {
         console.log(error);
       });
   };
-  
 
   // const found = Object.values(database).includes(searching);
   // console.log(found)
   // console.log(searching)
-  
+
   useEffect(() => {
     getItemNumber();
   }, [item_Number]);
 
   return (
     <>
-      <header className="billing-header">
-        <div className="header-left">
-          <h1>Add Items</h1>
-          <p>
-            <strong>Time:</strong> 01:00 PM
-          </p>
-          <p>
-            <strong>Date:</strong> 01 / 10 / 2024
-          </p>
-        </div>
-        <div className="header-right">
-          <h2>SHOPNAME</h2>
-          <p>9876543210</p>
-          <div className="avatar">
-            <span>AVT</span>
-          </div>
-        </div>
-      </header>
-      <div className="billingBox">
-        <table className="billing-table">
+      <div className="overflow-x-auto">
+        <table className="table">
+          {/* head */}
           <thead>
-            <tr>
-              <th>Item Number</th>
-              <th>Item Name</th>
-              <th>HSN/SAC</th>
-              <th>PRICE</th>
-              <th>GST</th>
-              <th>AMOUNT</th>
-              <th>Submit</th>
+            <tr className="text-xl bg-billingBgColor text-white">
+              <th className="w-2">
+                {/* <label>
+                  <input type="checkbox" className="checkbox bg-white" />
+                </label> */}
+                Select
+              </th>
+              <th className="w-28">Item Number</th>
+              <th className="text-center">Item Name</th>
+              <th className="text-center">HSN/SAC</th>
+              <th className="text-center">Price</th>
+              <th className="text-center">Gst</th>
+              <th className="text-center">Amount</th>
+              <th className="text-center">Action</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>{item_Number}</td>
+              <td></td>
+              <td className="text-center text-xl">{item_Number}</td>
               <td className="h-20">
                 <input
-                  className="text-center h-10 text-xl rounded-xl bg-inherit p-2"
+                  className="input w-full max-w-xs text-center text-xl"
                   type="text"
-                  onChange={(e) => {setItem_Name(e.target.value),setSearching(e.target.value)}}
+                  onChange={(e) => {
+                    setItem_Name(e.target.value), setSearching(e.target.value);
+                  }}
                   placeholder="Enter Item Name"
                 />
               </td>
               <td className="h-20">
                 <input
-                  className="text-center h-10 text-xl rounded-xl bg-inherit p-2"
+                  className="input w-full max-w-xs text-center text-xl"
                   type="number"
                   onChange={(e) => setHSN_SAC(e.target.value)}
                   placeholder="Enter HSN / SAC"
@@ -104,7 +96,7 @@ export default function ManageItems() {
               </td>
               <td className="h-20">
                 <input
-                  className="text-center h-10 text-xl rounded-xl bg-inherit p-2"
+                  className="input w-full max-w-xs text-center text-xl"
                   type="number"
                   onChange={(e) => setPrice(e.target.value)}
                   placeholder="Enter Price"
@@ -112,19 +104,20 @@ export default function ManageItems() {
               </td>
               <td className="h-20">
                 <input
-                  className="text-center h-10 text-xl rounded-xl bg-inherit p-2"
+                  className="input w-full max-w-xs text-center text-xl"
                   type="number"
                   onChange={(e) => setGST(e.target.value)}
                   placeholder="Enter GST Number"
                 />
               </td>
-              <td className="h-20">
-                <span     className="text-center h-10 text-xl rounded-xl bg-inherit p-2 w-40">{Number(price) + Number(gST) || 0}</span>
-                
+              <td   className="text-center text-xl">
+                <span>
+                  {Number(price) + Number(gST) || 0}
+                </span>
               </td>
-              <td className="h-20">
+              <td className="h-20 text-center">
                 <button
-                  className="rounded-xl p-2 border-2 hover:bg-zinc-300 w-40 transition-all"
+                  className="btn"
                   onClick={addItems}
                 >
                   Submit
@@ -132,28 +125,37 @@ export default function ManageItems() {
               </td>
             </tr>
             {database?.map(
-                ({ Item_Number, Item_Name, HSN_SAC, Price, GST }, index) => (
-                  <tr key={index}>
-                    <td className="text-center h-10 w-32 text-xl rounded-xl bg-inherit p-2">
-                      {Item_Number}
-                    </td>
-                    <td className="text-center h-10 text-xl rounded-xl bg-inherit p-2">
-                      {Item_Name}
-                    </td>
-                    <td className="text-center h-10 text-xl rounded-xl bg-inherit p-2">
-                      {HSN_SAC}
-                    </td>
-                    <td className="text-center h-10 text-xl rounded-xl bg-inherit p-2">
-                      {Price}
-                    </td>
-                    <td>{GST}</td>
-                    <td>{Number(Price) + Number(GST)}</td>
-                  </tr>
-                )
-              )}
+              ({ Item_Number, Item_Name, HSN_SAC, Price, GST }, index) => (
+                <tr key={index} className="hover text-xl text-center">
+                  <th>
+                    <label>
+                      <input type="checkbox" className="checkbox" />
+                    </label>
+                  </th>
+                  <td className="w-28 text-center">{Item_Number}</td>
+                  <td className="text-center">{Item_Name}</td>
+                  <td className="text-center">{HSN_SAC}</td>
+                  <td className="text-center">{Price}</td>
+                  <td className="text-center">{GST}</td>
+                  <td className="text-center">{Number(Price) + Number(GST)}</td>
+                  <td><button className="btn"><img className="w-6 text-center m-auto" src={editLogo} alt="" /></button></td>
+                </tr>
+              )
+            )}
           </tbody>
+          {/* foot */}
+          {/* <tfoot>
+            <tr>
+              <th></th>
+              <th>Item Number</th>
+              <th>Item Name</th>
+              <th>HSN/SAC</th>
+              <th>Price</th>
+              <th>Gst</th>
+              <th>Amount</th>
+            </tr>
+          </tfoot> */}
         </table>
-      </div>   
       </div>
     </>
   );
