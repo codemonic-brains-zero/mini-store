@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import editIcon from '../assets/images/edit.png'
-import deleteIcon from '../assets/images/trash.png'
-import addIcon from '../assets/images/check.png'
+import editIcon from "../assets/images/edit.png";
+import deleteIcon from "../assets/images/trash.png";
+import addIcon from "../assets/images/check.png";
 
 export default function ManageItems() {
   const [database, setDatabase] = useState([]);
@@ -11,6 +11,7 @@ export default function ManageItems() {
   const [hSN_SAC, setHSN_SAC] = useState([]);
   const [price, setPrice] = useState([]);
   const [gST, setGST] = useState([]);
+  const [deleteId, setDeleteId] = useState([]);
   const [searching, setSearching] = useState([]);
 
   console.log(item_Number);
@@ -35,6 +36,29 @@ export default function ManageItems() {
         Price: price,
         GST: gST,
       })
+      .then(function (response) {
+        console.log(response);
+        setitem_Number(item_Number + 1);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+  const deleteItem = async () => {
+    console.log(deleteId)
+    axios
+      .delete(
+        `${
+          import.meta.env.VITE_REACT_SERVER_URL
+        }/api/v1/item/delete-item/${deleteId}`,
+        {
+          Item_Number: item_Number,
+          Item_Name: item_Name,
+          HSN_SAC: hSN_SAC,
+          Price: price,
+          GST: gST,
+        }
+      )
       .then(function (response) {
         console.log(response);
         setitem_Number(item_Number + 1);
@@ -76,7 +100,10 @@ export default function ManageItems() {
           </thead>
           <tbody>
             <tr>
-              <td> <img className="w-6 m-auto" src={addIcon} alt="" /></td>
+              <td>
+                {" "}
+                <img className="w-6 m-auto" src={addIcon} alt="" />
+              </td>
               <td className="text-center text-xl">{item_Number}</td>
               <td className="h-20">
                 <input
@@ -86,6 +113,7 @@ export default function ManageItems() {
                     setItem_Name(e.target.value), setSearching(e.target.value);
                   }}
                   placeholder="Enter Item Name"
+                  required
                 />
               </td>
               <td className="h-20">
@@ -94,6 +122,7 @@ export default function ManageItems() {
                   type="number"
                   onChange={(e) => setHSN_SAC(e.target.value)}
                   placeholder="Enter HSN / SAC"
+                  required
                 />
               </td>
               <td className="h-20">
@@ -102,6 +131,7 @@ export default function ManageItems() {
                   type="number"
                   onChange={(e) => setPrice(e.target.value)}
                   placeholder="Enter Price"
+                  required
                 />
               </td>
               <td className="h-20">
@@ -110,24 +140,20 @@ export default function ManageItems() {
                   type="number"
                   onChange={(e) => setGST(e.target.value)}
                   placeholder="Enter GST"
+                  required
                 />
               </td>
-              <td   className="text-center text-xl">
-                <span>
-                ₹ {Number(price) + Number(gST) || 0}
-                </span>
+              <td className="text-center text-xl">
+                <span>₹ {Number(price) + Number(gST) || 0}</span>
               </td>
               <td className="h-20 text-center">
-                <button
-                  className="btn text-lg"
-                  onClick={addItems}
-                >
+                <button className="btn text-lg" onClick={addItems}>
                   Submit
                 </button>
               </td>
             </tr>
             {database?.map(
-              ({ Item_Number, Item_Name, HSN_SAC, Price, GST }, index) => (
+              ({ Item_Number, Item_Name, HSN_SAC, Price, GST, _id }, index) => (
                 <tr key={index} className="hover text-xl text-center">
                   <th>
                     <label>
@@ -139,10 +165,31 @@ export default function ManageItems() {
                   <td className="text-center">{HSN_SAC}</td>
                   <td className="text-center">{Price}</td>
                   <td className="text-center">{GST}</td>
-                  <td className="text-center">₹ {Number(Price) + Number(GST)}</td>
-                  <td className="flex flex-row"><button className="btn"><img className="w-6 text-center m-auto" src={editIcon} alt="" /></button>
-                  <button className="btn ml-2"><img className="w-6 text-center m-auto" src={deleteIcon} alt="" /></button></td>
-             
+                  <td className="text-center">
+                    ₹ {Number(Price) + Number(GST)}
+                  </td>
+                  <td className="flex flex-row">
+                    <button className="btn">
+                      <img
+                        className="w-6 text-center m-auto"
+                        src={editIcon}
+                        alt=""
+                      />
+                    </button>
+                    <button
+                      className="btn ml-2"
+                      onClick={() => {
+                        document.getElementById("my_modal_5").showModal(),
+                          setDeleteId(_id);
+                      }}
+                    >
+                      <img
+                        className="w-6 text-center m-auto"
+                        src={deleteIcon}
+                        alt=""
+                      />
+                    </button>
+                  </td>
                 </tr>
               )
             )}
@@ -160,7 +207,25 @@ export default function ManageItems() {
             </tr>
           </tfoot> */}
         </table>
+      </div>
+      {/* Open the modal using document.getElementById('ID').showModal() method */}
+      <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+        <div className="modal-box">
+          <h3 className="font-bold text-lg text-center">
+            This action cannot be reversed
+          </h3>
+          <p className="py-4 text-center">Are you sure to delete this item?</p>
+          <form method="dialog">
+            {/* if there is a button in form, it will close the modal */}
+            <div className="flex flex-row m-auto justify-center gap-4">
+              <button className="btn" onClick={deleteItem}>
+                Yes
+              </button>
+              <button className="btn">No</button>
+            </div>
+          </form>
         </div>
+      </dialog>
     </>
   );
 }
