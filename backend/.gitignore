@@ -21,6 +21,7 @@ npm-debug.log*
 
 # Environment variables
 config.env
+api.env
 
 # Optional npm cache directory
 .npm
