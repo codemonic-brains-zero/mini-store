@@ -160,6 +160,7 @@ export default function ManageItems() {
             </tr>
           </tfoot> */}
         </table>
+        </div>
     </>
   );
 }
